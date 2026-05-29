@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>心血管系統鑑別診斷｜線上講義</title>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f4f7fb;
+  --panel: #ffffff;
+  --ink: #1f2937;
+  --muted: #64748b;
+  --line: #dbe3ef;
+  --primary: #0f4c81;
+  --primary-2: #2563eb;
+  --danger: #b91c1c;
+  --soft: #eef6ff;
+  --note: #fff7ed;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+}
+button {
+  font: inherit;
+}
+.app {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+}
+.sidebar {
+  background: var(--panel);
+  border-color: var(--line);
+  min-height: 100vh;
+  position: sticky;
+  top: 0;
+  align-self: start;
+}
+.sidebar {
+  border-right: 1px solid var(--line);
+  padding: 18px 14px;
+}
+.brand {
+  color: var(--primary);
+  font-weight: 800;
+  font-size: 1.05rem;
+  line-height: 1.3;
+  margin-bottom: 14px;
+}
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.tool-button, .nav-button, .download-link {
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--primary);
+  border-radius: 6px;
+  padding: 7px 10px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 0.88rem;
+  line-height: 1.2;
+}
+.tool-button:hover, .nav-button:hover, .download-link:hover {
+  border-color: var(--primary-2);
+  background: var(--soft);
+}
+.toc-title {
+  color: #334155;
+  font-weight: 700;
+  margin: 18px 0 8px;
+}
+.toc {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: calc(100vh - 150px);
+  overflow: auto;
+}
+.toc button {
+  border: 0;
+  border-left: 3px solid transparent;
+  background: transparent;
+  color: #334155;
+  text-align: left;
+  padding: 8px 8px 8px 10px;
+  border-radius: 0 6px 6px 0;
+  cursor: pointer;
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+.toc button.active {
+  background: var(--soft);
+  border-left-color: var(--primary-2);
+  color: var(--primary);
+  font-weight: 700;
+}
+.stage {
+  min-width: 0;
+  padding: 20px clamp(16px, 3vw, 40px) 28px;
+}
+.deck-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  color: var(--primary);
+  margin-bottom: 12px;
+}
+.deck-title h1 {
+  font-size: clamp(1.3rem, 2.2vw, 2rem);
+  margin: 0;
+  letter-spacing: 0;
+}
+.counter {
+  color: var(--muted);
+  white-space: nowrap;
+  font-size: 0.95rem;
+}
+.slide-shell {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  min-height: 62vh;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+  overflow: auto;
+}
+.slide {
+  aspect-ratio: 16 / 9;
+  min-height: 620px;
+  padding: clamp(22px, 3vw, 38px);
+  background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+}
+.slide h1, .slide h2 {
+  color: var(--primary);
+  letter-spacing: 0;
+  margin-top: 0;
+}
+.slide h1 {
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  border-bottom: 4px solid var(--primary);
+  padding-bottom: 0.24em;
+}
+.slide h2 {
+  font-size: clamp(1.45rem, 2.2vw, 2.1rem);
+  border-left: 6px solid var(--primary-2);
+  padding-left: 0.55em;
+}
+.slide h3 {
+  color: #334155;
+  font-size: 1.25rem;
+}
+.slide p, .slide li, .slide td, .slide th, .slide blockquote {
+  line-height: 1.55;
+}
+.slide blockquote {
+  background: #fffbeb;
+  border-left: 5px solid #d97706;
+  margin: 1rem 0;
+  padding: 0.8rem 1rem;
+  border-radius: 6px;
+}
+.slide table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0.8rem 0;
+  background: #fff;
+  font-size: clamp(0.62rem, 0.78vw, 0.88rem);
+}
+.slide th, .slide td {
+  border: 1px solid var(--line);
+  padding: 0.48rem 0.58rem;
+  text-align: left;
+  vertical-align: top;
+}
+.slide th {
+  background: #eaf1f8;
+}
+.slide strong {
+  color: var(--danger);
+}
+.slide .mermaid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 440px;
+  overflow: auto;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1rem;
+}
+.slide.title-only {
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+.slide.title-only h1 {
+  border-bottom: 0;
+  font-size: clamp(4rem, 7vw, 6.4rem);
+  line-height: 1.18;
+  margin: 0;
+  max-width: 900px;
+}
+.slide.title-only.fs-80 h1 {
+  font-size: clamp(1.6rem, 3vw, 2.6rem);
+}
+.slide.title-only.fs-100 h1 {
+  font-size: clamp(2rem, 4vw, 3.4rem);
+}
+.slide.cover-page {
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+.slide.cover-page h1 {
+  border-bottom: 0;
+  font-size: clamp(2.8rem, 5vw, 4.6rem);
+  line-height: 1.12;
+  margin: 0;
+  max-width: 980px;
+}
+.slide.cover-page h2 {
+  border-left: 0;
+  color: #334155;
+  font-size: clamp(1.7rem, 3vw, 2.5rem);
+  margin: 2rem 0 0;
+  padding-left: 0;
+}
+.slide.rubric-page {
+  padding: clamp(20px, 2.5vw, 32px);
+}
+.slide.rubric-page table {
+  font-size: clamp(0.82rem, 0.95vw, 1rem);
+}
+.slide.rubric-page th,
+.slide.rubric-page td {
+  padding: 0.44rem 0.52rem;
+}
+.slide.fs-80 {
+  font-size: 0.8rem;
+}
+.slide.fs-80 table {
+  font-size: 0.8rem;
+}
+.slide.fs-100 {
+  font-size: 1rem;
+}
+.slide.fs-200 {
+  font-size: 2rem;
+}
+.slide.fs-130 {
+  font-size: 1.3rem;
+}
+.slide.fs-110 {
+  font-size: 1.1rem;
+}
+.slide.fs-150 {
+  font-size: 1.5rem;
+}
+.slide.fs-150 table {
+  font-size: 0.72em;
+}
+.slide.diagram-1280x960 {
+  aspect-ratio: 4 / 3;
+  min-height: 820px;
+  font-size: 1.12rem;
+}
+.slide.diagram-1280x960 .mermaid {
+  min-height: 680px;
+  max-height: none;
+  align-items: center;
+}
+.slide.diagram-1280x960 svg {
+  max-width: 100%;
+  max-height: 660px;
+  height: auto;
+}
+.slide.diagram-readable .mermaid {
+  min-height: 920px;
+  padding: 0;
+}
+.slide.diagram-readable svg {
+  width: 100% !important;
+  max-width: 100%;
+  max-height: 940px;
+}
+.slide.diagram-wide .mermaid {
+  min-height: 820px;
+  padding: 0.25rem;
+}
+.slide.diagram-wide svg {
+  width: 132% !important;
+  max-width: 132%;
+  max-height: 820px;
+}
+.slide.diagram-large .mermaid {
+  min-height: 820px;
+  padding: 0.25rem;
+}
+.slide.diagram-large svg {
+  width: 125% !important;
+  max-width: 125%;
+  max-height: 840px;
+}
+.slide.diagram-vertical .mermaid {
+  min-height: 900px;
+  padding: 0;
+}
+.slide.diagram-vertical svg {
+  width: 116% !important;
+  max-width: 116%;
+  max-height: 900px;
+}
+.slide.center-lower {
+  display: grid;
+  place-items: center;
+  padding-top: 4.5rem;
+  text-align: center;
+}
+.slide.center-lower h1 {
+  border-bottom: 0;
+  margin: 0;
+}
+.nav-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 12px;
+}
+.nav-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.collapsed-left .sidebar {
+  display: none;
+}
+.collapsed-left .app {
+  grid-template-columns: minmax(0, 1fr);
+}
+body.fullscreen .sidebar,
+body.fullscreen .deck-title,
+body.fullscreen .nav-row {
+  display: none;
+}
+body.fullscreen .app {
+  display: block;
+}
+body.fullscreen .stage {
+  padding: 0;
+}
+body.fullscreen .slide-shell {
+  border: 0;
+  border-radius: 0;
+  min-height: 100vh;
+}
+body.fullscreen .slide {
+  min-height: 100vh;
+}
+@media (max-width: 1100px) {
+  .app {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .sidebar {
+    position: static;
+    min-height: auto;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .toc {
+    max-height: none;
+  }
+  .slide {
+    min-height: 560px;
+  }
+}
+@media print {
+  .sidebar, .nav-row, .deck-title .toolbar {
+    display: none;
+  }
+  .app, .collapsed-left .app {
+    display: block;
+  }
+  .stage {
+    padding: 0;
+  }
+  .slide-shell {
+    box-shadow: none;
+    border: 0;
+  }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">心血管系統鑑別診斷<br>OSCE 線上講義</div>
+    <div class="toolbar">
+      <button class="tool-button" id="toggleToc">收合目錄</button>
+    </div>
+    <a class="download-link" href="02_胸痛鑑別診斷流程圖.slidev.md" download>下載 Slidev 檔案</a>
+    <div class="toc-title">投影片目錄</div>
+    <nav class="toc" id="toc"></nav>
+  </aside>
+
+  <main class="stage">
+    <div class="deck-title">
+      <h1>心血管系統鑑別診斷</h1>
+      <div class="counter" id="counter"></div>
+    </div>
+    <section class="slide-shell">
+      <article class="slide" id="slide"></article>
+    </section>
+    <div class="nav-row">
+      <div class="nav-group">
+        <button class="nav-button" id="prev">上一頁</button>
+        <button class="nav-button" id="next">下一頁</button>
+      </div>
+      <div class="nav-group">
+        <button class="nav-button" id="zoomIn">放大圖片</button>
+        <button class="nav-button" id="full">全螢幕播放</button>
+      </div>
+    </div>
+  </main>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>
+const slides = [{"title":"心血管系統鑑別診斷","html":"<h1>心血管系統鑑別診斷</h1>\n<h2>楊博凱</h2>","className":"cover-page","index":1},{"title":"病史收集：OPQRSTA","html":"<h2>病史收集：OPQRSTA（16 分）</h2>\n<table><thead><tr><th>項目</th><th>必問內容</th><th>滿分</th></tr></thead><tbody><tr><td>Onset</td><td>胸痛、呼吸喘、心悸何時開始</td><td>2</td></tr><tr><td>Quality</td><td>壓迫、悶、撕裂、刺痛、燒灼、銳利；喘的程度</td><td>2</td></tr><tr><td>Quantity / Time</td><td>持續多久、持續或間歇、是否惡化、痛分數 0-10</td><td>2</td></tr><tr><td>Precipitating</td><td>發作時活動、姿勢、壓力、飯後</td><td>2</td></tr><tr><td>Exaggerating</td><td>深呼吸、姿勢、按壓、活動、躺平是否惡化</td><td>2</td></tr><tr><td>Relieving</td><td>休息、NTG 含 5 分鐘反應、坐起來是否緩解</td><td>2</td></tr><tr><td>Accompanying</td><td>冒冷汗、噁心、嘔吐、呼吸喘、心悸、端坐呼吸、PND、頭暈等至少 3 項</td><td>2</td></tr><tr><td>鑑別性追問</td><td>ACS、主動脈剝離、PE、第一次發生與既往處理</td><td>2</td></tr></tbody></table>","className":"rubric-page fs-110","index":2},{"title":"病史收集：相關病史與 ROS","html":"<h2>病史收集：相關病史與 ROS（14 分）</h2>\n<table><thead><tr><th>類別</th><th>評分內容</th></tr></thead><tbody><tr><td>相關病史 7 分</td><td>過去病史、家族史、開刀/外傷/住院、過敏、用藥、TOCC、個人/社會史</td></tr><tr><td>一般</td><td>疲倦、無力、發燒、體重變化、食慾</td></tr><tr><td>HEENT</td><td>頭痛、眩暈、視力模糊、吞嚥困難、聽力下降</td></tr><tr><td>胸腔</td><td>呼吸喘、咳嗽、有痰、咳血</td></tr><tr><td>心血管</td><td>胸悶、胸痛、心悸、盜汗、端坐呼吸，不可重複主訴</td></tr><tr><td>GI / GU</td><td>噁心、嘔吐、食慾下降、排便、黑便；尿量、血尿、泡泡尿</td></tr><tr><td>四肢/神經/皮膚</td><td>單側下肢腫、麻木、無力、水腫、冰冷、關節腫脹、單側皮節紅疹或刺痛</td></tr></tbody></table>","className":"rubric-page fs-110","index":3},{"title":"身體評估：頭頸、胸腔、心臟","html":"<h2>身體評估：頭頸、胸腔、心臟（23 分）</h2>\n<table><thead><tr><th>區域</th><th>配分</th><th>必做項目</th></tr></thead><tbody><tr><td>頭頸部</td><td>8</td><td>嘴唇蒼白/發紺、冷汗；結膜蒼白；JVP/JVD 並口述測得值；甲狀腺；全身淋巴；carotid bruit</td></tr><tr><td>胸腔</td><td>7</td><td>脫衣評估；視診呼吸型態；觸診前後胸與胸壁壓痛；叩診；呼吸離軌度；前後胸雙側聽診；心包摩擦音</td></tr><tr><td>心臟</td><td>8</td><td>視診與觸診 PMI；心跳節律與次數；四個瓣膜區先膜面再鐘面；S3/S4、新雜音、心包摩擦音</td></tr></tbody></table>\n<blockquote>胸腔與心臟隔衣聽診為 0 分。</blockquote>","className":"rubric-page fs-110","index":4},{"title":"身體評估：腹部與四肢","html":"<h2>身體評估：腹部與四肢（15 分）</h2>\n<table><thead><tr><th>區域</th><th>配分</th><th>必做項目</th></tr></thead><tbody><tr><td>腹部</td><td>7</td><td>視診、聽診、叩診、觸診順序不可錯；腸音與血管嘈音；shifting dullness；CVA tenderness；肝脾與 Murphy sign；四象限淺深觸診與反彈痛</td></tr><tr><td>四肢</td><td>8</td><td>視診皮膚顏色、溫度、水腫、傷口；杵狀指；CRT；雙側橈/股/足背動脈同時比較；雙臂血壓；雙下肢凹陷性水腫與單側腫脹</td></tr></tbody></table>\n<blockquote>腹部順序錯誤整段 0 分；雙側比較是心血管 OSCE 的關鍵動作。</blockquote>","className":"rubric-page fs-110","index":5},{"title":"臨床決策：三個鑑別診斷","html":"<h2>鑑別診斷與臨床決策（32 分）</h2>\n<table><thead><tr><th>診斷</th><th>配分</th><th>評分重點</th></tr></thead><tbody><tr><td>第一診斷：ACS</td><td>15</td><td>分型 STEMI/NSTEMI/UA；STEMI 須指出部位；說明典型胸痛、風險因子、反向排除線索、身體檢查支持</td></tr><tr><td>第二診斷：心衰竭</td><td>9.5</td><td>可答心衰竭、急性肺水腫、心房顫動、心律不整、急性二尖瓣閉鎖不全；須有呼吸喘、orthopnea、JVD、crackles、水腫等推理</td></tr><tr><td>第三診斷：致命排除</td><td>7.5</td><td>主動脈剝離、PE、張力性氣胸、心包填塞、食道破裂任一；說明致命且處置完全不同</td></tr></tbody></table>\n<blockquote>三段式：診斷 → 完整推理段落 → 檢查及處置。</blockquote>","className":"rubric-page fs-110","index":6},{"title":"胸痛鑑別診斷流程圖","html":"<h1>胸痛鑑別診斷流程圖</h1>","className":"title-only fs-100","index":7},{"title":"一、解剖層次記憶","html":"<h2>一、解剖層次記憶（由淺至深、由前至後）</h2>\n<pre class=\"mermaid\">flowchart LR\n    Skin[皮膚 + 神經&lt;br/&gt;肋間神經 / 皮節] --&gt; Wall[胸壁&lt;br/&gt;肋骨 / 肋軟骨 / 肌肉]\n    Wall --&gt; Pleura[胸膜 / 肺實質&lt;br/&gt;壁層胸膜 / 肺]\n    Pleura --&gt; Heart[縱膈 心臟&lt;br/&gt;心肌 / 心包 / 瓣膜]\n    Heart --&gt; Vessel[縱膈 大血管&lt;br/&gt;主動脈 / 肺動脈]\n    Vessel --&gt; Eso[縱膈 食道]\n    Eso --&gt; Below[橫膈下方 referred&lt;br/&gt;膽囊 / 胃 / 胰臟]\n\n    Skin -.-&gt; HZdx[帶狀皰疹&lt;br/&gt;肋間神經痛]\n    Wall -.-&gt; CCdx[肋軟骨炎&lt;br/&gt;肌膜拉傷&lt;br/&gt;胸壁外傷]\n    Pleura -.-&gt; Pleudx[氣胸&lt;br/&gt;肺炎 / 肋膜炎&lt;br/&gt;肺栓塞 / 胸膜痛]\n    Heart -.-&gt; Hdx[ACS&lt;br/&gt;心包炎 / 心包填塞]\n    Vessel -.-&gt; Vdx[主動脈剝離&lt;br/&gt;肺動脈高壓]\n    Eso -.-&gt; Edx[GERD / 食道炎&lt;br/&gt;食道痙攣&lt;br/&gt;Boerhaave]\n    Below -.-&gt; Bdx[膽囊炎 / PUD&lt;br/&gt;胰臟炎]\n\n    style HZdx fill:#ffe6cc\n    style CCdx fill:#ccffcc\n    style Pleudx fill:#ffcccc\n    style Hdx fill:#ffcccc\n    style Vdx fill:#ffcccc\n    style Edx fill:#ccffcc\n    style Bdx fill:#ffe6cc</pre>","className":"","index":8},{"title":"二、4 大危險鑑別診斷","html":"<h1>二、4 大危險鑑別診斷</h1>","className":"fs-200 center-lower","index":9},{"title":"2.1 典型病人 Pattern Snapshot","html":"<h3>2.1 典型病人 Pattern Snapshot</h3>\n<table><thead><tr><th>診斷</th><th>典型病人輪廓</th></tr></thead><tbody><tr><td><strong>急性冠心症（ACS）</strong></td><td>中老年男性（女性 65+）、糖尿病、高血壓、高血脂、抽菸、早發家族史；像<strong>石頭壓住</strong>的胸骨後悶痛，輻射下顎／左肩／左手，伴冒冷汗、噁心、呼吸喘，持續 &gt; 20 分鐘 NTG 無緩解。<br><strong>女性／糖尿病／老年人非典型</strong>：上腹悶、疲倦、呼吸喘為主訴 — 警覺！</td></tr><tr><td><strong>主動脈剝離（Aortic dissection）</strong></td><td>中老年 + 長期高血壓、Marfan、結締組織病、懷孕、外傷；<strong>突發、撕裂／刀割樣</strong>胸痛，從前胸往背部移行，可能延伸至腹部／下肢。「我這輩子沒這樣痛過、像被刀劃開」是經典描述。</td></tr><tr><td><strong>張力性氣胸（Tension pneumothorax）</strong></td><td><strong>瘦高年輕男性</strong>自發、COPD 老人、近期胸部外傷或胸腔置管（CVC、肋膜穿刺）；突發單側胸痛 + 進行性呼吸困難，迅速惡化為休克（低血壓、心搏快、發紺、頸靜脈怒張）。</td></tr><tr><td><strong>肺栓塞（PE）</strong></td><td>久坐／長途飛行／近期手術（尤其骨科）／長期臥床／<strong>口服避孕藥</strong>／懷孕／惡性腫瘤／DVT 病史；突發呼吸喘 + 胸膜性胸痛、心搏過速、SpO₂↓、可能咳血。<strong>大部分 PE 操作沒特別發現</strong> — 完全靠病史 + 風險評分 + D-dimer / CTPA 才抓得到。</td></tr></tbody></table>","className":"fs-150","index":10},{"title":"2.2 問診重點","html":"<h3>2.2 問診重點（必問 3 題）</h3>\n<table><thead><tr><th>診斷</th><th>必問問題</th></tr></thead><tbody><tr><td><strong>ACS</strong></td><td>① 痛會不會輻射到下巴、左肩、左手或雙臂？冒冷汗嗎？呼吸會喘嗎？<br>② 之前有沒有冠心病、心臟病、糖尿病、高血壓、高血脂？爸媽兄弟姊妹有沒有早發心臟病？<br>③ 痛在動的時候比較厲害嗎？休息或舌下含片會緩解嗎？多久才緩解？</td></tr><tr><td><strong>主動脈剝離</strong></td><td>① 痛是怎麼開始的？是不是<strong>突然</strong>就來了？像撕裂、像刀割嗎？<br>② 痛會不會從前面跑到背、肩胛骨之間或往腰部下面跑？<br>③ 有沒有高血壓多久了？有沒有 Marfan、家族主動脈病史？最近有外傷嗎？</td></tr><tr><td><strong>張力性氣胸</strong></td><td>① 痛是不是<strong>突然</strong>發生的？有沒有外傷？最近做過中央靜脈穿刺或胸腔手術？<br>② 身高多少？瘦嗎？有抽菸或 COPD 嗎？以前氣胸過嗎？<br>③ 呼吸喘有沒有越來越嚴重？有沒有頭暈、快昏倒？</td></tr><tr><td><strong>肺栓塞（PE）</strong></td><td>① 最近有沒有久坐、長途飛行、開過刀（尤其骨科）、長期臥床？有沒有吃避孕藥？懷孕嗎？<br>② 呼吸喘是突然發生的嗎？深呼吸或咳嗽會更痛嗎？有咳血嗎？<br>③ 小腿有沒有腫、痛、變熱？單側嗎？</td></tr></tbody></table>","className":"fs-150","index":11},{"title":"2.3 PE（身體評估）重點","html":"<h3>2.3 PE（身體評估）重點</h3>\n<table><thead><tr><th>診斷</th><th>必檢 sign</th></tr></thead><tbody><tr><td><strong>ACS</strong></td><td>• 生命徵象：低血壓 + bradycardia 在下壁 MI 常見（右冠 → SA/AV node）；低血壓 + 心搏快可能是 cardiogenic shock<br>• 心音：新出現的 S3（急性肺水腫）、新雜音（papillary muscle rupture → 急性 MR）<br>• 肺音：底部 crackles / rales 表示左心衰<br>• 頸靜脈擴張（JVD）：右心衰竭或 RV infarct</td></tr><tr><td><strong>主動脈剝離</strong></td><td>• <strong>雙側血壓差 &gt; 20 mmHg</strong> + 雙側橈／股動脈搏不對稱：經典體徵（強烈支持線索）<br>• 新發主動脈閉鎖不全雜音（AR murmur）：剝離延伸至 aortic root<br>• 神經缺損（中風、四肢無力）：剝離影響大血管分支<br>• 心包填塞徵象（Beck triad）：proximal dissection 併發症</td></tr><tr><td><strong>張力性氣胸</strong></td><td>• 單側呼吸音消失 / 減弱：對側比較<br>• 單側叩診過響（hyperresonance）<br>• <strong>氣管向對側偏移</strong>：張力性的決定性線索<br>• 頸靜脈怒張 + 低血壓 + 心搏快：阻塞性休克<br>• 皮下氣腫（subcutaneous emphysema）：摸到捻髮感</td></tr><tr><td><strong>PE</strong></td><td>• 生命徵象：心搏 &gt; 100、RR &gt; 20、SpO₂ &lt; 94% 在低風險年輕人是強烈線索<br>• 頸靜脈擴張、loud P2（肺動脈瓣關音變大）、右側 S3、Graham Steell 雜音：肺動脈高壓 / 右心衰跡象<br>• 單側下肢圍差 &gt; 3 cm + 壓痛 + 紅熱：DVT 主要床邊線索；<strong>Homan sign</strong> 因敏感度／特異度差不作 rule-in/rule-out 依據<br>• 肺音：通常清楚；少數聽到 rales 或 pleural rub</td></tr></tbody></table>","className":"fs-150","index":12},{"title":"三、易漏警覺診斷流程圖","html":"<h2>三、易漏警覺診斷流程圖</h2>\n<pre class=\"mermaid\">flowchart LR\n    Start([胸痛但不像典型 ACS]) --&gt; HZ{單側皮節痛&lt;br/&gt;灼痛 / 電擊痛&lt;br/&gt;觸碰更痛?}\n    HZ --&gt;|YES| D1[帶狀皰疹前期]\n    HZ --&gt;|NO| Pneu{發燒 / 咳嗽 / 痰&lt;br/&gt;胸膜性胸痛?}\n    Pneu --&gt;|YES| D2[肺炎 / 肋膜炎]\n    Pneu --&gt;|NO| GB{油膩餐後&lt;br/&gt;RUQ / 右肩痛&lt;br/&gt;Murphy sign?}\n    GB --&gt;|YES| D3[膽囊炎]\n    GB --&gt;|NO| Eso{劇烈嘔吐後&lt;br/&gt;突發胸痛&lt;br/&gt;皮下氣腫?}\n    Eso --&gt;|YES| D4[食道破裂]\n    Eso --&gt;|NO| Back[回到 4 殺手&lt;br/&gt;ACS / dissection / PE / tension PTX]\n\n    style Start fill:#e6f2ff,stroke:#1e40af,stroke-width:3px\n    style D1 fill:#ffe6cc\n    style D2 fill:#ffe6cc\n    style D3 fill:#ffe6cc\n    style D4 fill:#ffcccc\n    style Back fill:#fff4cc</pre>","className":"diagram-1280x960 diagram-large fs-130","index":13},{"title":"四、OSCE 三段式答題","html":"<h1>三個鑑別診斷 → 推理過程 → 檢查及處置</h1>","className":"fs-200 center-lower","index":14},{"title":"4.1 第一診斷：急性冠心症","html":"<h3>4.1 第一診斷：急性冠心症（ACS）</h3>\n<pre class=\"mermaid\">flowchart TB\n    Dx([診斷&lt;br/&gt;ACS])\n    Dx --&gt; Row\n    Row[ ] --&gt; Reason[完整推理段落&lt;br/&gt;中老年男性合併 HTN / DM / HLD / smoking&lt;br/&gt;胸骨後壓迫痛，放射至下顎、左肩、左手&lt;br/&gt;合併冒冷汗、噁心，持續 &gt;20 min 且 NTG 未緩解&lt;br/&gt;bradycardia + 低血壓支持下壁 MI / RCA involvement]\n    Row --&gt; Tx[處置&lt;br/&gt;10 分鐘內 12-lead EKG&lt;br/&gt;加做 V4R + V7-V9，抽 hs-troponin&lt;br/&gt;ASA + P2Y12 + heparin；O2 only if SpO2 &lt;94%&lt;br/&gt;下壁 / RV infarct 慎用 NTG&lt;br/&gt;啟動 cath lab，PCI &lt;90 min]\n\n    style Dx fill:#ff9999,stroke:#b91c1c,stroke-width:4px,font-size:200%\n    style Row fill:transparent,stroke:transparent\n    style Reason fill:#fff4cc\n    style Tx fill:#ffe6cc</pre>","className":"diagram-1280x960 diagram-readable fs-130","index":15},{"title":"4.2 第二診斷：心衰竭","html":"<h3>4.2 第二診斷：心衰竭（Heart Failure）</h3>\n<pre class=\"mermaid\">flowchart TB\n    Dx([診斷&lt;br/&gt;心衰竭])\n    Dx --&gt; Row\n    Row[ ] --&gt; Reason[完整推理段落&lt;br/&gt;急性 MI 後左心室收縮下降，造成肺鬱血與低輸出&lt;br/&gt;症狀為呼吸喘、orthopnea、PND 與活動喘惡化&lt;br/&gt;JVD、crackles、雙下肢 pitting edema 支持 volume overload&lt;br/&gt;新 systolic murmur 要警覺乳頭肌斷裂 / 急性 MR]\n    Row --&gt; Tx[處置&lt;br/&gt;BNP / NT-proBNP、CXR、EKG、Cr / Na / K&lt;br/&gt;Echo 評估 EF、valve、RWMA&lt;br/&gt;IV furosemide，嚴密 I/O + body weight&lt;br/&gt;O2 / nitrate；嚴重肺水腫用 BiPAP&lt;br/&gt;穩定後啟動 GDMT：ARNI/ACEi, BB, MRA, SGLT2i]\n\n    style Dx fill:#ffcc99,stroke:#c2410c,stroke-width:4px,font-size:200%\n    style Row fill:transparent,stroke:transparent\n    style Reason fill:#fff4cc\n    style Tx fill:#ffe6cc</pre>","className":"diagram-1280x960 diagram-readable fs-130","index":16},{"title":"4.3 第三診斷：主動脈剝離","html":"<h3>4.3 第三診斷：主動脈剝離</h3>\n<pre class=\"mermaid\">flowchart TB\n    Dx([診斷&lt;br/&gt;主動脈剝離&lt;br/&gt;必須排除])\n    Dx --&gt; Row\n    Row[ ] --&gt; Reason[完整推理段落&lt;br/&gt;主動脈剝離致命且時間敏感，且處置與 ACS 相反&lt;br/&gt;突發撕裂胸背痛、疼痛移行、雙臂壓差 &gt;20 mmHg 支持診斷&lt;br/&gt;脈搏不對稱、新 AR murmur 或神經缺損代表分支受影響&lt;br/&gt;若誤當 ACS 給抗凝，可能造成災難性出血]\n    Row --&gt; Tx[處置&lt;br/&gt;床邊量雙側血壓、摸雙側橈 / 股動脈&lt;br/&gt;CXR 看 mediastinum widening，CTA 為首選確診&lt;br/&gt;不穩定病人可做 bedside TEE&lt;br/&gt;先 beta-blocker，SBP target 100-120&lt;br/&gt;A 型緊急心外；B 型嚴格控壓 / stent]\n\n    style Dx fill:#ff9999,stroke:#b91c1c,stroke-width:4px,font-size:200%\n    style Row fill:transparent,stroke:transparent\n    style Reason fill:#fff4cc\n    style Tx fill:#fff4cc</pre>","className":"diagram-1280x960 diagram-readable fs-130","index":17},{"title":"水腫鑑別診斷流程圖","html":"<h1>水腫鑑別診斷流程圖</h1>","className":"title-only fs-100","index":18},{"title":"水腫核心分流","html":"<h1>第一刀：單側 vs 雙側</h1>","className":"fs-200 center-lower","index":19},{"title":"一、水腫總分流","html":"<h2>一、水腫總分流</h2>\n<pre class=\"mermaid\">flowchart TB\n    Start([水腫主訴]) --&gt; Cut{第一刀&lt;br/&gt;單側 vs 雙側}\n\n    Cut --&gt;|單側 Localized| Uni[單側水腫&lt;br/&gt;依解剖層次列鑑別]\n    Cut --&gt;|雙側 Generalized| Bi[雙側水腫&lt;br/&gt;依全身性機轉列鑑別]\n\n    Uni --- U1[皮膚&lt;br/&gt;發炎 / 過敏]\n    Uni --- U2[軟組織&lt;br/&gt;蜂窩性組織炎]\n    Uni --- U3[血管&lt;br/&gt;DVT / 肢體缺血&lt;br/&gt;血管性水腫 / SVC]\n    Uni --- U4[淋巴&lt;br/&gt;淋巴水腫]\n    Uni --- U5[骨頭&lt;br/&gt;外傷 / 骨折 / Baker cyst]\n\n    Bi --- B1[心&lt;br/&gt;CHF / 急性失代償]\n    Bi --- B2[肝&lt;br/&gt;肝硬化 + 腹水]\n    Bi --- B3[腎&lt;br/&gt;Nephrotic / CKD overload]\n    Bi --- B4[其他&lt;br/&gt;內分泌 / 藥物 / 營養]\n\n    style Start fill:#e6f2ff,stroke:#1e40af,stroke-width:4px\n    style Cut fill:#fff4cc,stroke:#a16207,stroke-width:4px,font-size:180%\n    style Uni fill:#e6f2ff\n    style Bi fill:#ffe6f2\n    style U1 fill:#fff4cc\n    style U2 fill:#ffe6cc\n    style U3 fill:#ffcccc\n    style U4 fill:#e6f2ff\n    style U5 fill:#e6ffe6\n    style B1 fill:#ffcccc\n    style B2 fill:#ffe6cc\n    style B3 fill:#fff4cc\n    style B4 fill:#e6ffe6</pre>","className":"diagram-1280x960 diagram-vertical fs-130","index":20},{"title":"二、Starling 力學即鑑別","html":"<h2>二、Starling 力學即鑑別（雙側水腫 4 種失衡機制）</h2>\n<pre class=\"mermaid\">flowchart LR\n    Edema([水腫]) --&gt; M1[\"通透性升高\"]\n    Edema --&gt; M2[\"靜水壓升高\"]\n    Edema --&gt; M3[\"膠體滲透壓降低\"]\n    Edema --&gt; M4[\"淋巴回流降低\"]\n\n    M1 --&gt; D1[\"過敏 / HAE&lt;br/&gt;ACEI / CCB&lt;br/&gt;敗血症\"]\n    M2 --&gt; D2[\"心：CHF&lt;br/&gt;肝：門脈高壓&lt;br/&gt;腎：CKD&lt;br/&gt;DVT / 懷孕\"]\n    M3 --&gt; D3[\"Nephrotic&lt;br/&gt;Cirrhosis&lt;br/&gt;營養不良\"]\n    M4 --&gt; D4[\"Lymphedema&lt;br/&gt;術後 / 惡性阻塞\"]\n\n    style M1 fill:#ffcccc\n    style M2 fill:#ffe6cc\n    style M3 fill:#fff4cc\n    style M4 fill:#e6f2ff</pre>","className":"diagram-1280x960 diagram-wide fs-130","index":21},{"title":"三、10 項常見水腫診斷","html":"<h2>三、10 項常見水腫診斷對照表（典型症狀 + 表徵）</h2>\n<table><thead><tr><th>#</th><th>診斷</th><th>典型症狀（病史 / 主訴）</th><th>典型表徵（身體檢查）</th></tr></thead><tbody><tr><td>1</td><td><strong>急性失代償心衰 + 肺水腫</strong></td><td>數天至 1 週內漸進雙下肢腫、orthopnea、PND、運動耐受快速下降、體重 1 週 ↑ 3–5 kg、可能伴胸悶喘</td><td>JVD（&gt; 8 cm H₂O）、S3 gallop、bilateral basal crackles、雙下肢凹陷性水腫（PRT &gt; 30 秒）、Hepatojugular reflux</td></tr><tr><td>2</td><td><strong>慢性 CHF</strong></td><td>數月漸進雙下肢腫、夜尿、運動耐受↓、體重緩升、NYHA I–IV</td><td>同上但慢性、S3 可能、皮膚色素沉澱、apical impulse 偏左</td></tr><tr><td>3</td><td><strong>肝硬化 + 腹水</strong></td><td>慢性 B/C 肝 / 酒精史、漸進腹脹 + 雙下肢腫、黃疸、嗜睡（HE）、黑便（varices）</td><td>Spider angioma、palmar erythema、jaundice、gynecomastia、caput medusae、splenomegaly、shifting dullness、asterixis</td></tr><tr><td>4</td><td><strong>腎病症候群（Nephrotic）</strong></td><td>晨起眼瞼水腫 → 全身 anasarca、foamy urine（heavy proteinuria）、體重升高、可能 DM / HTN / SLE</td><td>眼瞼水腫、全身 anasarca、xanthoma（高膽固醇）、可能單側下肢突發腫（提示腎靜脈血栓）</td></tr><tr><td>5</td><td><strong>CKD with fluid overload</strong></td><td>慢性 Cr 升高、利尿劑反應差、血壓控不下、夜尿減少</td><td>雙下肢 + 顏面腫、anemia、皮膚搔癢、JVD、肺水腫</td></tr><tr><td>6</td><td><strong>深層靜脈血栓（DVT）</strong></td><td>單側突發腿腫 + 痛 + 變色（紅或紫）、近期手術 / 旅行 / 臥床 / 口避孕藥 / 懷孕 / 惡腫</td><td>單側腿圍差 &gt; 3 cm、壓痛、紅熱、嚴重者 phlegmasia 紫紺冰冷</td></tr><tr><td>7</td><td><strong>蜂窩性組織炎（Cellulitis）</strong></td><td>單側紅、腫、熱、痛 + 發燒、可能有皮膚破損入口</td><td>局部紅斑邊界不清、壓痛、溫熱、可能化膿、淋巴管炎條紋</td></tr><tr><td>8</td><td><strong>淋巴水腫（Lymphedema）</strong></td><td>慢性漸進不易凹陷單側肢腫、乳癌術後 / 放射線後 / 婦癌術後 / 絲蟲、利尿劑無效</td><td><strong>Stemmer sign 陽性</strong>（腳趾或手指根部皮膚捏不起來）、皮膚增厚、papillomatosis、橘皮樣</td></tr><tr><td>9</td><td><strong>血管性水腫（Angioedema）/ 過敏反應</strong></td><td>數分鐘至小時內顏面 / 唇 / 舌 / 喉腫脹、stridor、吞嚥困難、聲音改變、新藥史（ACEI / NSAID / 抗生素 / 食物）</td><td>唇 / 舌 / 軟顎下垂、stridor、wheeze、urticaria（蕁麻疹）±、低血壓 + 心搏過速（anaphylaxis）</td></tr><tr><td>10</td><td><strong>藥物誘發水腫</strong></td><td>對稱性下肢水腫、用藥後數天至數週開始、無 alarm symptoms（CCB amlodipine 最常見；NSAID、TZD、Steroid、雌激素）</td><td>雙側對稱凹陷性水腫、無 JVD、無 ascites、無 foamy urine、停藥試驗陽性</td></tr></tbody></table>","className":"fs-100","index":22},{"title":"四、OSCE 三段式答題：單側水腫","html":"<h1>單側水腫 → 三個鑑別診斷</h1>","className":"fs-200 center-lower","index":23},{"title":"單側水腫：DVT","html":"<h3>單側水腫：DVT</h3>\n<pre class=\"mermaid\">flowchart TB\n    Dx([診斷&lt;br/&gt;DVT 深層靜脈血栓])\n    Dx --&gt; Row\n    Row[ ] --&gt; Reason[推理過程&lt;br/&gt;單側突發腿腫 + 痛 + 紅紫變色&lt;br/&gt;近期手術、久坐、長途旅行、臥床&lt;br/&gt;口服避孕藥、懷孕、惡性腫瘤或過去 DVT&lt;br/&gt;單側腿圍差 &gt; 3 cm、壓痛、紅熱&lt;br/&gt;若合併胸痛、喘、咳血要警覺 PE]\n    Row --&gt; Tx[檢查及處置&lt;br/&gt;抽 D-dimer；安排下肢 venous Doppler 確認血栓&lt;br/&gt;有胸痛、呼吸喘、咳血或低氧時加做 CTPA 與 EKG&lt;br/&gt;確認或高度懷疑 DVT 時立即抗凝 heparin / LMWH / NOAC&lt;br/&gt;抬高患肢、加壓治療並評估出血風險&lt;br/&gt;嚴重 phlegmasia 或 massive PE 不穩：會診血管科 / 溶栓 / 取栓]\n\n    style Dx fill:#ffcccc,stroke:#b91c1c,stroke-width:4px,font-size:200%\n    style Row fill:transparent,stroke:transparent\n    style Reason fill:#fff4cc\n    style Tx fill:#e6ffe6</pre>","className":"diagram-1280x960 diagram-readable fs-130","index":24},{"title":"單側水腫：蜂窩性組織炎","html":"<h3>單側水腫：蜂窩性組織炎</h3>\n<pre class=\"mermaid\">flowchart TB\n    Dx([診斷&lt;br/&gt;蜂窩性組織炎])\n    Dx --&gt; Row\n    Row[ ] --&gt; Reason[推理過程&lt;br/&gt;單側紅、腫、熱、痛 + 發燒&lt;br/&gt;數小時至數天內進展&lt;br/&gt;常有皮膚破損、蚊蟲叮咬、香港腳或慢性潰瘍&lt;br/&gt;糖尿病、淋巴水腫、免疫不全為高風險&lt;br/&gt;劇痛超出表象、皮下捻髮感或紫黑變要排壞死性筋膜炎]\n    Row --&gt; Tx[檢查及處置&lt;br/&gt;CBC、CRP、血糖，嚴重者血液培養&lt;br/&gt;畫線追蹤紅斑邊界&lt;br/&gt;疑壞死性筋膜炎：CT 或緊急手術探查&lt;br/&gt;抗生素治療]\n\n    style Dx fill:#ffe6cc,stroke:#c2410c,stroke-width:4px,font-size:200%\n    style Row fill:transparent,stroke:transparent\n    style Reason fill:#fff4cc\n    style Tx fill:#e6ffe6</pre>","className":"diagram-1280x960 diagram-readable fs-130","index":25},{"title":"單側水腫：外傷 / 骨折","html":"<h3>單側水腫：外傷 / 骨折</h3>\n<pre class=\"mermaid\">flowchart TB\n    Dx([診斷&lt;br/&gt;外傷 / 骨折])\n    Dx --&gt; Row\n    Row[ ] --&gt; Reason[推理過程&lt;br/&gt;近期跌倒、撞擊、運動傷害或車禍&lt;br/&gt;局部瘀青、壓痛、變形、活動受限或不能承重&lt;br/&gt;開放性傷口需評估感染與骨折&lt;br/&gt;劇痛 + 蒼白 + 麻痺 + 脈搏消失要排間室症候群&lt;br/&gt;抗凝病史需警覺大血腫或假性動脈瘤]\n    Row --&gt; Tx[檢查及處置&lt;br/&gt;X-ray 至少兩個角度並含上下關節&lt;br/&gt;必要時 CT / MRI / 超音波&lt;br/&gt;CK、肌力、感覺、5P 評估間室症候群&lt;br/&gt;固定、止痛、冰敷、抬高&lt;br/&gt;骨折或開放傷口會診骨科；間室症候群需緊急筋膜切開]\n\n    style Dx fill:#fff4cc,stroke:#a16207,stroke-width:4px,font-size:200%\n    style Row fill:transparent,stroke:transparent\n    style Reason fill:#fff4cc\n    style Tx fill:#e6ffe6</pre>","className":"diagram-1280x960 diagram-readable fs-130","index":26},{"title":"五、OSCE 三段式答題：雙側水腫","html":"<h1>雙側水腫 → 三個鑑別診斷</h1>","className":"fs-200 center-lower","index":27},{"title":"雙側水腫：心衰竭","html":"<h3>雙側水腫：心衰竭</h3>\n<pre class=\"mermaid\">flowchart TB\n    Dx([診斷&lt;br/&gt;心衰竭])\n    Dx --&gt; Row\n    Row[ ] --&gt; Reason[推理過程&lt;br/&gt;雙下肢漸進水腫合併 orthopnea / PND&lt;br/&gt;運動耐受下降、體重快速增加、夜尿&lt;br/&gt;JVD、S3 gallop、bilateral basal crackles&lt;br/&gt;hepatojugular reflux 與 pitting edema 支持 volume overload&lt;br/&gt;誘因：感染、AF、缺血、用藥不順、攝鈉或輸液過多]\n    Row --&gt; Tx[檢查及處置&lt;br/&gt;BNP / NT-proBNP、CXR、EKG + troponin&lt;br/&gt;bedside echo 評估 EF、瓣膜、心包&lt;br/&gt;Cr、BUN、Na、K 作利尿前基線&lt;br/&gt;IV furosemide，嚴密 I/O + 每日體重&lt;br/&gt;O2 / nitrate；嚴重肺水腫 BiPAP；穩定後 GDMT]\n\n    style Dx fill:#ffcccc,stroke:#b91c1c,stroke-width:4px,font-size:200%\n    style Row fill:transparent,stroke:transparent\n    style Reason fill:#fff4cc\n    style Tx fill:#e6ffe6</pre>","className":"diagram-1280x960 diagram-readable fs-130","index":28},{"title":"雙側水腫：腎病症候群","html":"<h3>雙側水腫：腎病症候群</h3>\n<pre class=\"mermaid\">flowchart TB\n    Dx([診斷&lt;br/&gt;腎病症候群])\n    Dx --&gt; Row\n    Row[ ] --&gt; Reason[推理過程&lt;br/&gt;晨起眼瞼水腫，進展到全身 anasarca&lt;br/&gt;foamy urine 提示 heavy proteinuria&lt;br/&gt;三聯徵：大量蛋白尿、低白蛋白、高膽固醇&lt;br/&gt;成人常見病因：DM nephropathy、HTN、MCD、FSGS]\n    Row --&gt; Tx[檢查及處置&lt;br/&gt;U/A、spot UPCR、24 hr urine protein&lt;br/&gt;albumin、lipid profile、Cr、BUN、電解質&lt;br/&gt;病因 work-up：HbA1c、ANA/dsDNA/C3/C4、HBV/HCV/HIV&lt;br/&gt;成人首發或不典型考慮 renal biopsy&lt;br/&gt;限鈉 + 利尿；ACEi / ARB 降蛋白尿；statin；高栓塞風險考慮抗凝]\n\n    style Dx fill:#ffe6cc,stroke:#c2410c,stroke-width:4px,font-size:200%\n    style Row fill:transparent,stroke:transparent\n    style Reason fill:#fff4cc\n    style Tx fill:#e6ffe6</pre>","className":"diagram-1280x960 diagram-readable fs-130","index":29},{"title":"雙側水腫：肝硬化 + 腹水","html":"<h3>雙側水腫：肝硬化 + 腹水</h3>\n<pre class=\"mermaid\">flowchart TB\n    Dx([診斷&lt;br/&gt;肝硬化 + 腹水])\n    Dx --&gt; Row\n    Row[ ] --&gt; Reason[推理過程&lt;br/&gt;B / C 肝、酒精、NAFLD 或自體免疫病史&lt;br/&gt;漸進腹脹 + 雙下肢水腫，可能黃疸、瘀青、嗜睡&lt;br/&gt;蜘蛛痣、手掌紅斑、gynecomastia、caput medusae&lt;br/&gt;shifting dullness / fluid wave 支持腹水&lt;br/&gt;發燒、腹痛、意識變化需懷疑 SBP]\n    Row --&gt; Tx[檢查及處置&lt;br/&gt;LFT、albumin、PT/INR、CBC、Cr、Na、ammonia&lt;br/&gt;腹部超音波 + Doppler，AFP 與 viral marker&lt;br/&gt;有 ascites 必做診斷性 paracentesis&lt;br/&gt;SAAG &gt;= 1.1 支持 portal HTN；PMN &gt;= 250 為 SBP&lt;br/&gt;限鈉、spironolactone + furosemide；大量腹水放液 + albumin]\n\n    style Dx fill:#fff4cc,stroke:#a16207,stroke-width:4px,font-size:200%\n    style Row fill:transparent,stroke:transparent\n    style Reason fill:#fff4cc\n    style Tx fill:#e6ffe6</pre>","className":"diagram-1280x960 diagram-readable fs-130","index":30}];
+let current = Number(location.hash.replace("#/", "")) || 1;
+let zoomLevel = 1;
+
+mermaid.initialize({
+  startOnLoad: false,
+  theme: "default",
+  flowchart: { useMaxWidth: true, htmlLabels: true, curve: "basis" },
+  securityLevel: "loose"
+});
+
+const toc = document.getElementById("toc");
+const slideEl = document.getElementById("slide");
+const counterEl = document.getElementById("counter");
+
+function clampSlide(value) {
+  return Math.max(1, Math.min(slides.length, value));
+}
+
+function renderToc() {
+  toc.innerHTML = "";
+  slides.forEach((slide) => {
+    const button = document.createElement("button");
+    button.textContent = slide.index + ". " + slide.title;
+    button.className = slide.index === current ? "active" : "";
+    button.addEventListener("click", () => goTo(slide.index));
+    toc.appendChild(button);
+  });
+}
+
+function slideBaseFontSize(slide) {
+  if (slide.className.includes("fs-80")) return 0.8;
+  if (slide.className.includes("fs-100")) return 1;
+  if (slide.className.includes("fs-200")) return 2;
+  if (slide.className.includes("fs-130")) return 1.3;
+  if (slide.className.includes("fs-110")) return 1.1;
+  if (slide.className.includes("fs-150")) return 1.5;
+  if (slide.className.includes("diagram-1280x960")) return 1.12;
+  return 1;
+}
+
+function mermaidFontSize(slide) {
+  if (slide.className.includes("diagram-readable")) return "22px";
+  if (slide.className.includes("diagram-wide")) return "21px";
+  if (slide.className.includes("diagram-large")) return "21px";
+  if (slide.className.includes("diagram-vertical")) return "22px";
+  return "16px";
+}
+
+async function renderSlide() {
+  const slide = slides[current - 1];
+  slideEl.className = "slide " + slide.className;
+  slideEl.innerHTML = slide.html;
+  slideEl.style.fontSize = (slideBaseFontSize(slide) * zoomLevel).toFixed(2) + "rem";
+  counterEl.textContent = current + " / " + slides.length;
+  renderToc();
+  location.hash = "#/" + current;
+  const diagrams = slideEl.querySelectorAll(".mermaid");
+  for (const diagram of diagrams) {
+    const source = diagram.textContent;
+    const id = "mermaid-" + current + "-" + Math.random().toString(36).slice(2);
+    try {
+      mermaid.initialize({
+        startOnLoad: false,
+        theme: "default",
+        flowchart: { useMaxWidth: true, htmlLabels: true, curve: "basis" },
+        securityLevel: "loose",
+        themeVariables: { fontSize: mermaidFontSize(slide) }
+      });
+      const rendered = await mermaid.render(id, source);
+      diagram.innerHTML = rendered.svg;
+      const svg = diagram.querySelector("svg");
+      if (svg && slide.className.includes("diagram-readable")) {
+        svg.style.width = "100%";
+        svg.style.maxHeight = "940px";
+        svg.style.height = "auto";
+      }
+      if (svg && slide.className.includes("diagram-wide")) {
+        svg.style.width = "132%";
+        svg.style.maxHeight = "820px";
+        svg.style.height = "auto";
+      }
+      if (svg && slide.className.includes("diagram-large")) {
+        svg.style.width = "125%";
+        svg.style.maxHeight = "840px";
+        svg.style.height = "auto";
+      }
+      if (svg && slide.className.includes("diagram-vertical")) {
+        svg.style.width = "116%";
+        svg.style.maxHeight = "900px";
+        svg.style.height = "auto";
+      }
+    } catch (error) {
+      diagram.textContent = source;
+      diagram.style.color = "#b91c1c";
+    }
+  }
+}
+
+function goTo(index) {
+  current = clampSlide(index);
+  renderSlide();
+}
+
+document.getElementById("prev").addEventListener("click", () => goTo(current - 1));
+document.getElementById("next").addEventListener("click", () => goTo(current + 1));
+document.getElementById("zoomIn").addEventListener("click", () => {
+  zoomLevel = zoomLevel >= 1.25 ? 1 : Number((zoomLevel + 0.08).toFixed(2));
+  renderSlide();
+});
+document.getElementById("full").addEventListener("click", () => {
+  document.body.classList.toggle("fullscreen");
+});
+document.getElementById("toggleToc").addEventListener("click", () => {
+  document.body.classList.toggle("collapsed-left");
+});
+document.addEventListener("keydown", (event) => {
+  if (event.key === "ArrowRight" || event.key === "PageDown") goTo(current + 1);
+  if (event.key === "ArrowLeft" || event.key === "PageUp") goTo(current - 1);
+  if (event.key === "Escape") document.body.classList.remove("fullscreen");
+});
+
+renderSlide();
+</script>
+</body>
+</html>
